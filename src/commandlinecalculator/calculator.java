@@ -267,9 +267,22 @@ public class calculator {
             String item=leftSide.get(i);
             if(item.equals(op.op)){
                 double newRes=0;
-                int lastIndex=i-1;
-                double a1=Double.parseDouble(leftSide.get(i-1));
+                int lastIndex=0;
+                double a1=0;
                 double a2=Double.parseDouble(leftSide.get(i+1));
+                try{
+                    a1=Double.parseDouble(leftSide.get(i-1));
+                    leftSide.remove(i-1);
+                    leftSide.remove(i-1);
+                    leftSide.remove(i-1);
+                    lastIndex=i-1;
+                }
+                catch(Exception exp){
+                    // accures when like '-1' => - , 1
+                    leftSide.remove(i);
+                    leftSide.remove(i);
+                    lastIndex=i;
+                }
                 if(op==Operation.POWER)
                     newRes+=Math.pow(a1, a2);
                 if(op==Operation.DIVITION)
@@ -280,9 +293,6 @@ public class calculator {
                     newRes+=(a1+a2);
                 if(op==Operation.SUBTRACT)
                     newRes+=(a1-a2); 
-                leftSide.remove(i-1);
-                leftSide.remove(i-1);
-                leftSide.remove(i-1);
                 leftSide.add(lastIndex,String.valueOf(newRes));
                 if(leftSide.size()==1)
                     {result+=newRes;break;}
