@@ -42,13 +42,16 @@ public class calculator {
         // one entry Operations
 
             // trigonometry
-        Cosine("cos",true),
+        Cosine_d("cos_d",true),
+        Cosine_r("cos_r",true),
         aCosine("acos",true),
         cosh("cosh",true),
-        Sinus("sin",true),
+        Sinus_d("sin_d",true),
+        Sinus_r("sin_r",true),
         aSinus("asin",true),
         sinh("sinh",true),
-        tan("tan",true),
+        tan_d("tan_d",true),
+        tan_r("tan_r",true),
         atan("atan",true),
         tanh("tanh",true),
             // logarithmic
@@ -295,7 +298,7 @@ public class calculator {
     */
     private double solve_1EF(ArrayList<String> leftSide){
         double result=0;
-        Operation op=Operation.Sinus;
+        Operation op=Operation.Sinus_r;
         List<Operation> ops=Arrays.asList(Operation.values());
         boolean flag=false;
         for(int i=leftSide.size()-1;i>=0;i--){
@@ -318,20 +321,26 @@ public class calculator {
                 double arg=Double.parseDouble(leftSide.get(i+1));
                 
                 
-                if(op==Operation.Sinus)
+                if(op==Operation.Sinus_r)
                     newRes+=Math.sin(arg);
+                if(op==Operation.Sinus_d)
+                    newRes+=Math.sin(Math.toRadians(arg));
                 if(op==Operation.aSinus)
                     newRes+=Math.asin(arg);
                 if(op==Operation.sinh)
                     newRes+=Math.sinh(arg);
-                if(op==Operation.Cosine)
-                    newRes+=Math.cos(arg);        
+                if(op==Operation.Cosine_r)
+                    newRes+=Math.cos(arg);
+                if(op==Operation.Cosine_d)
+                    newRes+=Math.cos(Math.toRadians(arg));        
                 if(op==Operation.aCosine)
                     newRes+=Math.acos(arg); 
                 if(op==Operation.cosh)
                     newRes+=Math.cosh(arg);
-                if(op==Operation.tan)
-                    newRes+=Math.tan(arg); 
+                if(op==Operation.tan_r)
+                    newRes+=Math.tan(arg);
+                if(op==Operation.tan_d)
+                    newRes+=Math.tan(Math.toRadians(arg));
                 if(op==Operation.atan)
                     newRes+=Math.atan(arg); 
                 if(op==Operation.tanh)
