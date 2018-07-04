@@ -22,7 +22,8 @@ public class CommandLineCalculator {
                 System.out.println(new calculator(inp).solvePattern());
             }
             catch(Exception exp){
-                System.out.println("Please check the command out and try again!");
+                throw exp;
+//                System.out.println("Please check the command out and try again!");
             }
         }
     }
