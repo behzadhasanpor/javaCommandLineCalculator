@@ -89,6 +89,7 @@ public class calculator {
         private Operation(String reg){
             this.op=reg;
             this.reg="\\"+reg;
+            this.contain=null;
         }
         private Operation(String reg,boolean nonReg){
             if(nonReg==true){
@@ -308,7 +309,7 @@ public class calculator {
     */
     private double solve_1EF(ArrayList<String> leftSide){
         double result=0;
-        Operation op=Operation.Sinus_r;
+        Operation op=null;
         List<Operation> ops=Arrays.asList(Operation.values());
         boolean flag=false;
         for(int i=leftSide.size()-1;i>=0;i--){
@@ -317,6 +318,7 @@ public class calculator {
                 for(Operation o:ops){
                     if(item.equals(o.contain) && !"(".equals(item) && !")".equals(item)){
                         op=o;
+                        System.out.println(item+"it");
                         flag=true;
                         break;
                     }
@@ -326,6 +328,7 @@ public class calculator {
                 flag=false;
             }
             if(flag==true){
+                flag=false;
                 double newRes=0;
                 int lastIndex=i;
                 double arg=Double.parseDouble(leftSide.get(i+1));
